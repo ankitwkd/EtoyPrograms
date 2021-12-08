@@ -28,16 +28,19 @@ public class Turtle{
      * Move the turtle distance units in the current direction
      * @param distance
      */
-    private void move(int distance){
-        //TODO
+    public void move(int distance){
+        double radians = (float)(direction() * Math.PI / 180);
+        double deltaX = Math.cos(radians) * distance;
+        double deltaY = Math.sin(radians) * distance;
+        location().setLocation(location().getX()+deltaX, location().getY()+deltaY);
     }
 
     /**
      * Add “degrees” to the current heading of the turtle
      * @param degrees
      */
-    private void turn(int degrees){
-        //TODO
+    public void turn(int degrees){
+        currentDirection = (currentDirection + degrees)%360;
     }
 
     /**
@@ -76,5 +79,10 @@ public class Turtle{
         double Tx = target.getX();
         double Ty = target.getY();
         return (float)Math.toDegrees(Math.atan((Py - Ty)/(Px -Tx)));
+    }
+
+    public void print(){
+        System.out.println(location());
+        System.out.println(direction());
     }
 }

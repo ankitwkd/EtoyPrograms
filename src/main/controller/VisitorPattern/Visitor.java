@@ -1,7 +1,5 @@
 package main.controller.VisitorPattern;
 
-import main.model.Command;
-
 import java.util.List;
 
 public class Visitor implements VisitorInterface{

@@ -1,9 +1,9 @@
 package main.controller;
 
 
+import main.controller.VisitorPattern.CommandExecutor;
 import main.controller.VisitorPattern.Visitor;
 import main.controller.VisitorPattern.VisitorInterface;
-import main.model.Command;
 import main.model.Turtle;
 
 import java.io.IOException;
@@ -20,10 +20,13 @@ public class DriverProgram {
 
     public static void main(String args[]) throws IOException{
         ArrayList<VisitorInterface> commands = new ArrayList<>();
-        ProgramReader programReader = new ProgramReader("TurtleProgram.txt");
+        Turtle turtle = new Turtle();
+        ProgramReader programReader = new ProgramReader("/Users/wkd/IdeaProjects/EtoyPrograms/src/main/controller/TurtleProgram.txt", turtle);
         commands = programReader.read();
 
         //Pass to commands to Visitor
         Visitor visitor = new Visitor(commands);
+        visitor.accept(new CommandExecutor());
+        turtle.print();
     }
 }
